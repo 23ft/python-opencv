@@ -3,25 +3,27 @@ from tkinter.messagebox import showinfo
 from tkinter.messagebox import showerror
 import cv2
 import numpy as np
-import math 
+
+global foto, alto, ancho, size, yo
+
+foto = []
 
 #Def para cada boton.
 
 def UbiImage():
     #Funcion mostrar la imagen con opencv
     global foto
-    global size
     
     foto = cv2.imread(Ubicacion)
     cv2.imshow("Imagen", foto)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    
-    
+     
 def OpenFilesMenu():
     #Funcion menu desplegable
     from tkinter import filedialog
     global Ubicacion
+    global size
     
     raiz_menux = filedialog.askopenfilename(initialdir = "/home",title = "Select file To Prepare",filetypes = (("all files","*.*"),("jpeg files","*.jpg")))
     print (raiz_menux)
@@ -40,10 +42,21 @@ def OpenFilesMenu():
     
     print(f"El tamaño de la imagen es:{size}!")
     Label(frame1,text= f"El tamaño es: {alto}x{ancho}!").grid(row = 2, column = 1, sticky= "w")
-   
+    
+        
 def Mostrar():
     #Funcion para mostrar imagen en la ventana (lienzo)
     global imagen_file
+    
+    size2 = size
+    
+    alto2 = size2[0]
+    ancho2 = size2[1]
+
+    
+    canvas_imagen = Canvas(raiz, width= ancho2, height= alto2)
+    #Lienzo para visualizar imagen
+    canvas_imagen.place(x=360, y=180 )
     
     imagen_file = PhotoImage(file = Ubicacion)
     canvas_imagen.create_image(0, 0, image= imagen_file, anchor= "nw")
@@ -53,7 +66,7 @@ def Mostrar():
 raiz = Tk()
 raiz.title("Opencv")
 raiz.geometry("1000x1000")
-raiz.resizable(0,0)
+raiz.resizable(1,1)
 
 #frame 1 integrado en la raiz "raiz"
 frame1 = Frame(raiz)
@@ -84,12 +97,12 @@ button2 = Button(frame1, text= "Ver Imagen", command = Mostrar)
 button2.grid(row = 3, column = 0, sticky= "nw")
 
 
-canvas_imagen = Canvas(raiz, width= 500, height= 500, bg= "black")
-#Lienzo para visualizar imagen
-canvas_imagen.place(x=360, y=180 )
+
 #canvas_imagen.configure(yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
 
 
+
+print("Me gustas")
 #Bucle Infinito
 raiz.mainloop()
 
