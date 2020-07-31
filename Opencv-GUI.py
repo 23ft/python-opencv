@@ -3,6 +3,7 @@ from tkinter.messagebox import showinfo
 from tkinter.messagebox import showerror
 import cv2
 import numpy as np
+import math 
 
 #Def para cada boton.
 
