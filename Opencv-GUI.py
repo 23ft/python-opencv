@@ -4,7 +4,7 @@ from tkinter.messagebox import showerror
 import cv2
 import numpy as np
 
-global foto, alto, ancho, size, yo
+global foto, alto, ancho, size
 
 foto = []
 
@@ -39,7 +39,6 @@ def OpenFilesMenu():
     size = foto.shape
     alto = size[0]
     ancho = size[1]
-
     print(f"El tamaño de la imagen es:{size}!")
     Label(frame1,text= f"El tamaño es: {alto}x{ancho}!").grid(row = 2, column = 1, sticky= "w")
 
@@ -49,14 +48,13 @@ def Mostrar():
     global imagen_file
 
     size2 = size
-
     alto2 = size2[0]
     ancho2 = size2[1]
 
 
     canvas_imagen = Canvas(raiz, width= ancho2, height= alto2)
     #Lienzo para visualizar imagen
-    canvas_imagen.place(x=360, y=180 )
+    canvas_imagen.place(x=360, y=180)
 
     imagen_file = PhotoImage(file = Ubicacion)
     canvas_imagen.create_image(0, 0, image= imagen_file, anchor= "nw")
