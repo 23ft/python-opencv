@@ -7,7 +7,7 @@ import numpy as np
 
 ##---------------------------------------------------------------------------##
 
-#global foto, alto, ancho, size, Ubicacion
+global foto, alto, ancho, size, Ubicacion, im, lectura
 
 ##---------------------------------------------------------------------------##
 def UbiImage(): # Funcion mostrar la imagen con opencv
@@ -22,7 +22,7 @@ def OpenFilesMenu(): # Funcion menu desplegable
     from tkinter import filedialog
     global Ubicacion, size, foto
 
-    raiz_menux = filedialog.askopenfilename(initialdir = "/home",title = "Select file To Prepare",filetypes = (("all files","*.*"),("jpeg files","*.jpg")))
+    raiz_menux = filedialog.askopenfilename(initialdir = "/home/Escritorio/",title = "Select file To Prepare",filetypes = (("all files","*.*"),("jpeg files","*.jpg")))
     print (raiz_menux)
     Ubicacion = raiz_menux
 
@@ -42,7 +42,7 @@ def OpenFilesMenu(): # Funcion menu desplegable
     
 #---------------------------------------------------------------------------#
 def Mostrar(): # Funcion mostrar imagen en GUI
-    global im, lectura
+    global im
     
     #Funcion para mostrar imagen en la ventana (lienzo)
     #global imagen_file    
@@ -56,11 +56,14 @@ def Mostrar(): # Funcion mostrar imagen en GUI
     #canvas_imagen.create_image(0, 0, image= imagen_file, anchor= "nw")
     #print("Imagen Mostrando...")
     
-    lectura = Image.open(Ubicacion)
-    img = lectura.resize((200,200))
-    im = ImageTk.PhotoImage(img)
-    label_image = Label(frame1, image= im)
-    label_image.grid(row= 3, column= 1)
+    lectura_imagen_pil = Image.open(Ubicacion)
+    img_pil = lectura_imagen_pil.resize((200,200))
+    image_pil_window = ImageTk.PhotoImage(img_pil)
+    
+    label_image = Label(frame1, 
+                        image= image_pil_window)
+    label_image.grid(row= 3, 
+                     column= 1) # Label para image_pil_window
     
 #---------------------------------------------------------------------------#
 #Inicio
